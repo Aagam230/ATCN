@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds — dark terminal palette */
+  --color-base:          #0b0e13;
+  --color-base-panel:    #11151b;
+  --color-base-elevated: #161b23;
+  --color-base-raised:   #1d232c;
+
+  /* Text */
+  --color-ink:           #e2e6ec;
+  --color-ink-secondary: #8d96a3;
+  --color-ink-tertiary:  #5c6470;
+
+  /* Borders */
+  --color-line:          #1d232c;
+  --color-line-soft:     #161b23;
+  --color-line-strong:   #2b3340;
+
+  /* Semantic — green / red / blue / violet / amber */
+  --color-pos:           #34d399;   /* emerald-400  */
+  --color-neg:           #f87171;   /* red-400      */
+  --color-info:          #60a5fa;   /* blue-400     */
+  --color-violet:        #a78bfa;   /* violet-400   */
+  --color-signal-amber:  #fbbf24;   /* amber-400    */
+
+  /* Dimmed fills */
+  --color-pos-dim:       rgba(52, 211, 153, 0.10);
+  --color-neg-dim:       rgba(248, 113, 113, 0.10);
+  --color-info-dim:      rgba(96, 165, 250, 0.10);
+  --color-violet-dim:    rgba(167, 139, 250, 0.10);
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+/* ── Base resets ──────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Utility component classes ────────────────────────────────────────────── */
+@layer components {
+  /* Eyebrow label — small all-caps tracking label */
+  .label-eyebrow {
+    @apply text-2xs font-semibold uppercase tracking-widest text-ink-tertiary;
+  }
+
+  /* Tabular numbers */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Focus ring for interactive elements */
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-info focus-visible:ring-offset-1 focus-visible:ring-offset-base-panel;
+  }
+}
+
+/* ── Scrollbar styling ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base-panel);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-tertiary);
+}
