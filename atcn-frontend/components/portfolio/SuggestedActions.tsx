@@ -7,10 +7,10 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SuggestedAction } from "@/types";
 
-const priorityTone: Record<SuggestedAction["priority"], "critical" | "elevated" | "watch"> = {
+const priorityTone: Record<SuggestedAction["priority"], "critical" | "warning" | "muted"> = {
   high:   "critical",
-  medium: "elevated",
-  low:    "watch",
+  medium: "warning",
+  low:    "muted",
 };
 
 export function SuggestedActions() {

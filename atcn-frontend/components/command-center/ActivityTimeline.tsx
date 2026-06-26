@@ -6,20 +6,22 @@ import { fetchActivityTimeline } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import type { ActivityEvent } from "@/types";
 
+// ActivityEvent["actor"] = "ai" | "trader" | "system" | "risk"
+// "trader" maps to a human user icon; "risk" maps to the desk/building icon
 const actorMeta: Record<ActivityEvent["actor"], { icon: typeof Bot; tone: string }> = {
   ai:     { icon: Bot,       tone: "text-signal-amber border-signal-amber/30 bg-signal-amberDim" },
   system: { icon: Cog,       tone: "text-info border-info/30 bg-info-dim" },
-  user:   { icon: User,      tone: "text-violet border-violet/30 bg-violet-dim" },
-  desk:   { icon: Building2, tone: "text-pos border-pos/30 bg-pos-dim" },
+  trader: { icon: User,      tone: "text-violet border-violet/30 bg-violet-dim" },
+  risk:   { icon: Building2, tone: "text-pos border-pos/30 bg-pos-dim" },
 };
 
 // Hardcoded seed events shown when the activity endpoint returns nothing yet
 const SEED_EVENTS: ActivityEvent[] = [
   { id: "s1", time: "09:02", actor: "system", message: "Market open — NSE session started. NIFTY 50 +0.42% at open.", tag: "MARKET" },
   { id: "s2", time: "09:14", actor: "ai",     message: "Opportunity engine surfaced 8 new signals across NIFTY 50 universe.", tag: "ENGINE" },
-  { id: "s3", time: "09:31", actor: "desk",   message: "Equity desk flagged BAJFINANCE for Decision Twin review.", tag: "EQUITY" },
+  { id: "s3", time: "09:31", actor: "risk",   message: "Equity desk flagged BAJFINANCE for Decision Twin review.", tag: "EQUITY" },
   { id: "s4", time: "10:05", actor: "system", message: "India VIX declined 1.2 pts — regime model updated to RISK-ON.", tag: "REGIME" },
-  { id: "s5", time: "10:22", actor: "user",   message: "Portfolio rebalance threshold review completed.", tag: "PORTFOLIO" },
+  { id: "s5", time: "10:22", actor: "trader", message: "Portfolio rebalance threshold review completed.", tag: "PORTFOLIO" },
 ];
 
 export function ActivityTimeline() {

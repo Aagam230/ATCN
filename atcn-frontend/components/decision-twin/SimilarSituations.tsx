@@ -6,10 +6,10 @@ import { fetchSimilarSituations } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import type { SimilarSituation } from "@/types";
 
-const outcomeTone: Record<SimilarSituation["outcome"], "pos" | "neg" | "neutral"> = {
-  favorable:   "pos",
-  unfavorable: "neg",
-  neutral:     "neutral",
+const outcomeTone: Record<SimilarSituation["outcome"], "pos" | "neg" | "muted"> = {
+  win:       "pos",
+  loss:      "neg",
+  breakeven: "muted",
 };
 
 export function SimilarSituations() {

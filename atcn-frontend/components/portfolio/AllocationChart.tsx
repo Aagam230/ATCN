@@ -19,7 +19,7 @@ export function AllocationChart() {
             <Pie
               data={data}
               dataKey="value"
-              nameKey="name"
+              nameKey="label"
               innerRadius={62}
               outerRadius={92}
               paddingAngle={2}
@@ -27,7 +27,7 @@ export function AllocationChart() {
               strokeWidth={2}
             >
               {data.map((entry) => (
-                <Cell key={entry.name} fill={entry.color} />
+                <Cell key={entry.label} fill={entry.color} />
               ))}
             </Pie>
             <Tooltip
@@ -45,9 +45,9 @@ export function AllocationChart() {
 
       <div className="mt-2 grid w-full grid-cols-2 gap-2">
         {data.map((item) => (
-          <div key={item.name} className="flex items-center gap-2">
+          <div key={item.label} className="flex items-center gap-2">
             <span className="h-2 w-2 shrink-0" style={{ backgroundColor: item.color }} />
-            <span className="truncate text-2xs text-ink-secondary">{item.name}</span>
+            <span className="truncate text-2xs text-ink-secondary">{item.label}</span>
             <span className="ml-auto font-mono text-2xs text-ink tabular">{item.value}%</span>
           </div>
         ))}

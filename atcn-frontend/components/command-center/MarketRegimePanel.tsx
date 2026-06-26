@@ -6,9 +6,18 @@ import { useApi, Skeleton } from "@/hooks/useApi";
 import { fetchMarketRegime } from "@/lib/api";
 import { Gauge } from "lucide-react";
 
-const stateTone: Record<string, "pos" | "neutral" | "amber"> = {
+// Backend sends state: "favorable" | "neutral" | "caution"
+// Map to valid LinearScore tones
+const stateLSTone: Record<string, "pos" | "info" | "amber"> = {
   favorable: "pos",
-  neutral:   "neutral",
+  neutral:   "info",
+  caution:   "amber",
+};
+
+// Map to valid Badge tones
+const stateBadgeTone: Record<string, "pos" | "muted" | "amber"> = {
+  favorable: "pos",
+  neutral:   "muted",
   caution:   "amber",
 };
 
@@ -44,9 +53,9 @@ export function MarketRegimePanel() {
             <LinearScore
               label={f.label}
               value={f.value}
-              tone={stateTone[f.state] === "pos" ? "pos" : stateTone[f.state] === "amber" ? "amber" : "info"}
+              tone={stateLSTone[f.state] ?? "info"}
             />
-            <Badge tone={stateTone[f.state] === "neutral" ? "neutral" : stateTone[f.state]} className="shrink-0">
+            <Badge tone={stateBadgeTone[f.state] ?? "muted"} className="shrink-0">
               {f.state}
             </Badge>
           </div>

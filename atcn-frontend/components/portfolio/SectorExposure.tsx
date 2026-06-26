@@ -31,9 +31,9 @@ export function SectorExposure() {
               <span className="truncate">{s.sector}</span>
               <span className={cn(
                 "font-mono text-2xs tabular",
-                s.active > 0 ? "text-pos" : s.active < 0 ? "text-neg" : "text-ink-tertiary"
+                s.activeWeight > 0 ? "text-pos" : s.activeWeight < 0 ? "text-neg" : "text-ink-tertiary"
               )}>
-                {s.active > 0 ? "+" : ""}{s.active.toFixed(1)}pp
+                {s.activeWeight > 0 ? "+" : ""}{s.activeWeight.toFixed(1)}pp
               </span>
             </div>
             <div className="relative mt-1 h-3 w-full bg-line-soft">

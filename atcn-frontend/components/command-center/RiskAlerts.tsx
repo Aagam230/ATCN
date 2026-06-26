@@ -1,16 +1,19 @@
 "use client";
 
-import { AlertTriangle, AlertOctagon, Eye } from "lucide-react";
+import { AlertTriangle, AlertOctagon, Info } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { useApi, Skeleton } from "@/hooks/useApi";
 import { fetchRiskAlerts } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import type { RiskAlert } from "@/types";
 
-const severityMeta: Record<RiskAlert["severity"], { icon: typeof AlertTriangle; tone: "critical" | "elevated" | "watch" }> = {
-  critical: { icon: AlertOctagon, tone: "critical" },
-  elevated: { icon: AlertTriangle, tone: "elevated" },
-  watch:    { icon: Eye,          tone: "watch" },
+const severityMeta: Record<
+  RiskAlert["severity"],
+  { icon: typeof AlertTriangle; tone: "critical" | "warning" | "watch"; iconClass: string }
+> = {
+  critical: { icon: AlertOctagon, tone: "critical", iconClass: "text-neg" },
+  warning:  { icon: AlertTriangle, tone: "warning",  iconClass: "text-signal-amber" },
+  info:     { icon: Info,          tone: "watch",    iconClass: "text-info" },
 };
 
 export function RiskAlertsFeed() {
@@ -35,12 +38,7 @@ export function RiskAlertsFeed() {
         const Icon = meta.icon;
         return (
           <div key={alert.id} className="flex gap-3 py-3 first:pt-0 last:pb-0">
-            <Icon size={15} className={cn(
-              "mt-0.5 shrink-0",
-              meta.tone === "critical" && "text-neg",
-              meta.tone === "elevated" && "text-signal-amber",
-              meta.tone === "watch"    && "text-info",
-            )} />
+            <Icon size={15} className={cn("mt-0.5 shrink-0", meta.iconClass)} />
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-xs font-medium text-ink">{alert.title}</span>

@@ -5,10 +5,11 @@ import { useApi, Skeleton } from "@/hooks/useApi";
 import { fetchStressScenarios } from "@/lib/api";
 import type { StressScenario } from "@/types";
 
-const probTone: Record<StressScenario["probability"], "neutral" | "elevated" | "watch"> = {
-  low:      "neutral",
+const probTone: Record<StressScenario["probability"], "muted" | "watch" | "warning" | "critical"> = {
+  low:      "muted",
   moderate: "watch",
-  elevated: "elevated",
+  elevated: "warning",
+  high:     "critical",
 };
 
 export function StressTesting() {

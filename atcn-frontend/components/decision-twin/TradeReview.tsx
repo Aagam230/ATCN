@@ -29,7 +29,7 @@ export function TradeReview() {
       const res = await submitDecision(t.id, decision);
       setMessage(res.message);
       setTimeout(() => { setMessage(null); refresh(); }, 3000);
-    } catch (e) {
+    } catch {
       setMessage("Failed to submit decision.");
     } finally {
       setSubmitting(false);
